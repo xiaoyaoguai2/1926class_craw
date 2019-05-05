@@ -1,6 +1,6 @@
 #!/usr/bin/env python 
 # -*- coding:utf-8 -*-
-from urllib import request, response
+from urllib import request, error
 from lxml import etree
 import urllib
 import random
@@ -12,11 +12,24 @@ def get_html(url, encoding='utf-8'):
                    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; 360SE)",
                    "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; The World)",
                    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0"]
-    req = request.Request(url)
-    req.add_header("User-Agent", random.choice(user_agents))
-    response = request.urlopen(req)
-    content = response.read().decode(encoding)
-    return content
+    try:
+        req = request.Request(url)
+        req.add_header("User-Agent", random.choice(user_agents))
+        response = request.urlopen(req)
+        content = response.read().decode(encoding)
+        return content
+    except error.URLError as e:
+        # URLError
+        # 产生的原因主要有：
+        # 1.没有网络连接
+        # 2.服务器连接失败
+        # 3.找不到指定的服务
+        print("URL 异常 {}".format(e.reason))
+    except error.HTTPError as e:
+        # HTTPError 获取响应状态码来判断响应失败的原因
+        print("HTTP 异常".format(e.reason))
+        return None
+
 
 def download_img(urls, file_path, img_names):
     print('开始下载: ')

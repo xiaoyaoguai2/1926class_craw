@@ -2,15 +2,12 @@
 # -*- coding:utf-8 -*-
 from urllib import request, response
 from lxml import etree
-import urllib
-import random
 from thread_crawl import thread_crawl_tool
 
 
 url = 'http://www.girlsky.cn/mntp/xgmn/'
 # url = 'http://www.girlsky.cn/mntp/jpmn/'
 file_path = 'H://pythonimg/'
-
 
 content = thread_crawl_tool.get_html(url)
 
