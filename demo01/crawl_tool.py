@@ -102,3 +102,4 @@ def write_on_page(url):
     with open("51job.csv", mode="a", encoding="utf-8", newline="") as job:
         f = csv.writer(job)
         f.writerows(rows)
+
