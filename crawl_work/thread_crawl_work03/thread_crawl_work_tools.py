@@ -65,11 +65,11 @@ def get_one_page(url):
 
         rows.append(row)
     #  将爬虫的数据写入到csv格式文件中
-    with open('thread_51jop02.txt', mode="a+", encoding="utf-8", newline="") as f:
+    # with open('thread_51jop02.txt', mode="a+", encoding="utf-8", newline="") as f:
         # "51job.csv", mode = "a", encoding = "utf-8", newline = ""
         # 将文件的读写和csv文件进行关联
-        file = csv.writer(f)
-        file.writerows(rows)  # 将爬到数据一次性写入到csv格式中
+        # file = csv.writer(f)
+        # file.writerows(rows)  # 将爬到数据一次性写入到csv格式中
 
     # for row in rows:
     #     print(row)
@@ -77,7 +77,7 @@ def get_one_page(url):
 
 def connect_DB(row):
     # 打开数据库连接
-    db = pymysql.connect("localhost", "root", "1234", "mypython")
+    db = pymysql.connect("192.168.1.192", "root", "root", "mypython")
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
     # 使用 execute()  方法执行 SQL 查询
